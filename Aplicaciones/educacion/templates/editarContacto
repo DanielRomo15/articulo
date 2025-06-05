@@ -33,3 +33,56 @@
 
 
     </div>
+    <div class="col-md-3"></div>
+</div>
+    
+
+<!--Embeber coidgo javascript/jquery dentro del HTML-->
+<script>
+    $("#frm_editar_contacto").validate({
+        rules:{
+            "nombre":{
+                required:true,
+                minlength:5,//cuantos caracteres
+                maxlength:20 //caracteres maximos
+            },
+            "descripcion":{
+                required:true
+            },
+            "funciones":{
+                required:true
+            },
+            "horario":{
+                required:true
+            },
+            "sueldo":{
+                required:true,
+                number:true,
+                min: 5, //sirve para validad cantidades numericas
+                max:5000
+
+            }
+
+
+        },
+        messages:{
+            "nombre":{
+                required:"Este campo de obligatorio",
+                minlength: "Por favor ingrese 5 letras",
+                maxlength:"Por favor menos de 5 letras",
+            },
+            "descripcion":{
+                required:"Por Favor ingrese la descripcion"
+            }, 
+            "funciones":{
+                required:"Por Favor ingrese las funciones"
+            },
+            "horario":{
+                required:"Por Favor ingrese el horario"
+            },
+            "sueldo":{
+                required:"Por Favor ingrese el sueldo"
+            }
+        }    
+
+    });
