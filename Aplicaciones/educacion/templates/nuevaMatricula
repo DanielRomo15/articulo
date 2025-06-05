@@ -37,3 +37,23 @@
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-outline-danger" href="{% url 'matriculas' %}">Cancelar</a>
         </form>
+</div>
+    <div class="col-md-3"></div>
+</div>
+
+<script>
+    $("#frm_nueva_matricula").validate({
+        rules: {
+            id_estudiante: { required: true },
+            id_curso: { required: true },
+            fecha_matricula: { required: true, date: true },
+            estado: { required: true }
+        },
+        messages: {
+            id_estudiante: { required: "Debe seleccionar un estudiante" },
+            id_curso: { required: "Debe seleccionar un curso" },
+            fecha_matricula: { required: "Este campo es obligatorio", date: "Ingrese una fecha válida" },
+            estado: { required: "Debe seleccionar un estado" }
+        }
+    });
+</script>
