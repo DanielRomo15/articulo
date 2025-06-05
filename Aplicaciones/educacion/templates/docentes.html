@@ -1,0 +1,47 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+<h1>Listado de Docentes</h1>
+<a href="{% url 'nuevoDocente' %}" class="btn btn-primary mb-3">Agregar Docente</a>
+
+<table class="table table-bordered table-striped table-hover" id="tbl_docentes">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Correo Electrónico</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for docente in docentes %}
+        <tr>
+            <td>{{ docente.id_docente }}</td>
+            <td>{{ docente.nombre }}</td>
+            <td>{{ docente.apellido }}</td>
+            <td>{{ docente.especialidad }}</td>
+            <td>{{ docente.correo_electronico }}</td>
+            <td>{{ docente.telefono }}</td>
+            <td>
+                <a href="{% url 'eliminarDocente' docente.id_docente %}"
+                   onclick="return confirm('¿Seguro que desea eliminar este docente?')"
+                   class="btn btn-outline-danger btn-sm">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a href="{% url 'editarDocente' docente.id_docente %}"
+                   class="btn btn-outline-warning btn-sm">
+                    <i class="fa fa-pen"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    // let table = new DataTable('#tbl_docentes');
+</script>
+{% endblock %}

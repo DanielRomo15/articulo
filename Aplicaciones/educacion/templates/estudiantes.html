@@ -1,0 +1,48 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+<h1>Listado de Estudiantes</h1>
+<a href="{% url 'nuevoEstudiante' %}" class="btn btn-primary mb-3">Agregar Estudiante</a>
+
+<table class="table table-bordered table-striped table-hover" id="tbl_estudiantes">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Correo Electrónico</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>{{ estudiante.id_estudiante }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.apellido }}</td>
+            <td>{{ estudiante.fecha_nacimiento }}</td>
+            <td>{{ estudiante.correo_electronico }}</td>
+            <td>{{ estudiante.telefono }}</td>
+            <td>
+                <a href="{% url 'eliminarEstudiante' estudiante.id_estudiante %}"
+                   onclick="return confirm('¿Seguro que desea eliminar este estudiante?')"
+                   class="btn btn-outline-danger btn-sm">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a href="{% url 'editarEstudiante' estudiante.id_estudiante %}"
+                   class="btn btn-outline-warning btn-sm">
+                    <i class="fa fa-pen"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    // Inicializa DataTables si lo usas
+    // let table = new DataTable('#tbl_estudiantes');
+</script>
+{% endblock %}

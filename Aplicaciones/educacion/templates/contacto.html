@@ -1,0 +1,63 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+<h1>Tabla de cargos</h1>
+<a href="nuevoContacto" class="btn btn-primary">Agregar Contacto</a>
+
+<table class="table table-bordered table-striped table-hover" id="tbl_cargos">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>DESCRIPCION</th>
+            <th>FUNCIONES</th>
+            <th>HORARIO</th>
+            <th>SUELDO</th>
+            <th>LOGO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cargoTemporal in cargos %} 
+        <tr>
+            <td>{{cargoTemporal.id}}</td>
+            <td>{{cargoTemporal.nombre}}</td>
+            <td>{{cargoTemporal.descripcion}}</td>
+            <td>{{cargoTemporal.funciones}}</td>
+            <td>{{cargoTemporal.horario}}</td>
+            <td>{{cargoTemporal.sueldo}}</td>
+            
+
+            <td>
+                {% if cargoTemporal.logo %}
+                    <img src="{{cargoTemporal.logo.url}}" height="80px" alt="Logo del cargo">
+                {% else %}
+                    Ninguna
+                {% endif %}
+            </td>
+            <td>
+
+                <script>
+
+                </script>
+                <a href="{% url 'eliminarContacto' cargoTemporal.id %}" 
+                   onclick="return confirm('¿Seguro que desea eliminar?')" 
+                   class="btn btn-outline-danger">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a href="editarContacto/{{cargoTemporal.id}}" 
+                   class="btn btn-outline-warning">
+                    <i class="fa fa-pen"></i>
+                </a>
+            </td>
+        </tr>
+        <script>
+let table = new DataTable('#myTable');
+</script>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br><br><br><br><br>
+   
+{% endblock %}

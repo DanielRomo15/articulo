@@ -1,0 +1,45 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+<h1>Listado de Matrículas</h1>
+<a href="{% url 'nuevaMatricula' %}" class="btn btn-primary mb-3">Agregar Matrícula</a>
+
+<table class="table table-bordered table-striped table-hover" id="tbl_matriculas">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Estudiante</th>
+            <th>Curso</th>
+            <th>Fecha Matrícula</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for matricula in matriculas %}
+        <tr>
+            <td>{{ matricula.id_matricula }}</td>
+            <td>{{ matricula.id_estudiante.nombre }} {{ matricula.id_estudiante.apellido }}</td>
+            <td>{{ matricula.id_curso.nombre_curso }}</td>
+            <td>{{ matricula.fecha_matricula }}</td>
+            <td>{{ matricula.estado|capfirst }}</td>
+            <td>
+                <a href="{% url 'eliminarMatricula' matricula.id_matricula %}"
+                   onclick="return confirm('¿Seguro que desea eliminar esta matrícula?')"
+                   class="btn btn-outline-danger btn-sm">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a href="{% url 'editarMatricula' matricula.id_matricula %}"
+                   class="btn btn-outline-warning btn-sm">
+                    <i class="fa fa-pen"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    // let table = new DataTable('#tbl_matriculas');
+</script>
+{% endblock %}
