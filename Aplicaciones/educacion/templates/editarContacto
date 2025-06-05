@@ -1,3 +1,35 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar cargo</h1>
+        <form action="{% url 'procesarEdicionContacto' %}" id="frm_editar_contacto" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{cargoEditar.id}}"> <br>>
+            <label for="">Nombre</label><br>
+            <input required class="form-control" type="text" name="nombre" id="nombre" value="{{cargoEditar.nombre}}"> <br>
+            <label for="">Descripcion</label><br>
+            <input required class="form-control" type="text" name="descripcion" id="descripcion" value="{{cargoEditar.descripcion}}"> <br>
+            <label for="">Funciones</label><br>
+            <input required class="form-control" type="text" name="funciones" id="funciones" value="{{cargoEditar.funciones}}"><br>
+            <label for="">Horario:</label><br>
+            <input required class="form-control" type="text" name="horario" id="horario" value="{{cargoEditar.horario}}"><br>
+            <label for="">Sueldo:</label><br>
+            <input required class="form-control" type="text" name="sueldo" id="sueldo" value="{{cargoEditar.sueldo}}"><br>
+            <label for="">Logo:</label><br>
+            <input class="form-control" type="file" name="logo" id="logo" value="{{cargoEditar.logo}}"><br>
+            
+    
+            <button 
+            class="btn btn-success"
+            type="submit">Actualizar</button>
+            <a 
+            class="btn btn-outline-danger" href="/">Cancelar</a>
+        </form>
+
+
+
+
+    </div>
