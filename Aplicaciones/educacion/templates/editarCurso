@@ -34,3 +34,20 @@
     </div>
 <div class="col-md-3"></div>
 </div>
+<script>
+    $("#frm_editar_curso").validate({
+        rules: {
+            nombre_curso: { required: true, minlength: 3, maxlength: 200 },
+            descripcion: { required: true, minlength: 5 },
+            id_docente: { required: true },
+            creditos: { required: true, digits: true, min: 1 }
+        },
+        messages: {
+            nombre_curso: { required: "Este campo es obligatorio", minlength: "Mínimo 3 caracteres", maxlength: "Máximo 200 caracteres" },
+            descripcion: { required: "Este campo es obligatorio", minlength: "Mínimo 5 caracteres" },
+            id_docente: { required: "Debe seleccionar un docente" },
+            creditos: { required: "Este campo es obligatorio", digits: "Debe ser un número entero", min: "Debe ser al menos 1" }
+        }
+    });
+</script>
+{% endblock %}
