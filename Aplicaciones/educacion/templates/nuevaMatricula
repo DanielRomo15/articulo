@@ -5,3 +5,35 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light p-4 rounded">
         <h1>Nueva Matrícula</h1>
+<form action="{% url 'guardarMatricula' %}" id="frm_nueva_matricula" method="post">
+            {% csrf_token %}
+            <label for="id_estudiante">Estudiante(*)</label><br>
+            <select required class="form-control" name="id_estudiante" id="id_estudiante">
+                <option value="">-- Seleccione un estudiante --</option>
+                {% for estudiante in estudiantes %}
+                <option value="{{ estudiante.id_estudiante }}">{{ estudiante.nombre }} {{ estudiante.apellido }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="id_curso">Curso(*)</label><br>
+            <select required class="form-control" name="id_curso" id="id_curso">
+                <option value="">-- Seleccione un curso --</option>
+                {% for curso in cursos %}
+                <option value="{{ curso.id_curso }}">{{ curso.nombre_curso }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="fecha_matricula">Fecha de Matrícula(*)</label><br>
+            <input required class="form-control" type="date" name="fecha_matricula" id="fecha_matricula"><br>
+
+            <label for="estado">Estado(*)</label><br>
+            <select required class="form-control" name="estado" id="estado">
+                <option value="">-- Seleccione estado --</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+                <option value="cancelado">Cancelado</option>
+            </select><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="{% url 'matriculas' %}">Cancelar</a>
+        </form>
