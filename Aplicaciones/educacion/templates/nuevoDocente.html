@@ -28,3 +28,23 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+<script>
+    $("#frm_nuevo_docente").validate({
+        rules: {
+            nombre: { required: true, minlength: 2, maxlength: 100 },
+            apellido: { required: true, minlength: 2, maxlength: 100 },
+            especialidad: { required: true, minlength: 2, maxlength: 100 },
+            correo_electronico: { required: true, email: true },
+            telefono: { required: true, minlength: 7, maxlength: 20 }
+        },
+        messages: {
+            nombre: { required: "Este campo es obligatorio", minlength: "Mínimo 2 caracteres", maxlength: "Máximo 100 caracteres" },
+            apellido: { required: "Este campo es obligatorio", minlength: "Mínimo 2 caracteres", maxlength: "Máximo 100 caracteres" },
+            especialidad: { required: "Este campo es obligatorio", minlength: "Mínimo 2 caracteres", maxlength: "Máximo 100 caracteres" },
+            correo_electronico: { required: "Este campo es obligatorio", email: "Ingrese un correo válido" },
+            telefono: { required: "Este campo es obligatorio", minlength: "Mínimo 7 caracteres", maxlength: "Máximo 20 caracteres" }
+        }
+    });
+</script>
+{% endblock %}
+
