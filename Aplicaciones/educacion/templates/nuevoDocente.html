@@ -1,3 +1,30 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Nuevo Docente</h1>
+        <form action="{% url 'guardarDocente' %}" id="frm_nuevo_docente" method="post">
+            {% csrf_token %}
+            <label for="nombre">Nombre(*)</label><br>
+            <input placeholder="Ingrese el nombre" required class="form-control" type="text" name="nombre" id="nombre"><br>
+
+            <label for="apellido">Apellido(*)</label><br>
+            <input placeholder="Ingrese el apellido" required class="form-control" type="text" name="apellido" id="apellido"><br>
+
+            <label for="especialidad">Especialidad(*)</label><br>
+            <input placeholder="Ingrese la especialidad" required class="form-control" type="text" name="especialidad" id="especialidad"><br>
+
+            <label for="correo_electronico">Correo electrónico(*)</label><br>
+            <input placeholder="Ingrese el correo electrónico" required class="form-control" type="email" name="correo_electronico" id="correo_electronico"><br>
+
+            <label for="telefono">Teléfono(*)</label><br>
+            <input placeholder="Ingrese el teléfono" required class="form-control" type="text" name="telefono" id="telefono"><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="{% url 'docentes' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
