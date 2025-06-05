@@ -1,3 +1,34 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Editar Curso</h1>
+        <form action="{% url 'procesarEdicionCurso' %}" id="frm_editar_curso" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id_curso" value="{{ curso.id_curso }}">
+
+            <label for="nombre_curso">Nombre del Curso</label><br>
+            <input required class="form-control" type="text" name="nombre_curso" id="nombre_curso" value="{{ curso.nombre_curso }}"><br>
+
+            <label for="descripcion">Descripción</label><br>
+            <textarea required class="form-control" name="descripcion" id="descripcion" rows="3">{{ curso.descripcion }}</textarea><br>
+
+            <label for="id_docente">Docente</label><br>
+            <select required class="form-control" name="id_docente" id="id_docente">
+                <option value="">-- Seleccione un docente --</option>
+                {% for d in docentes %}
+                    <option value="{{ d.id_docente }}" {% if d.id_docente == curso.id_docente.id_docente %}selected{% endif %}>
+                        {{ d.nombre }} {{ d.apellido }} ({{ d.especialidad }})
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <label for="creditos">Créditos</label><br>
+            <input required class="form-control" type="number" name="creditos" id="creditos" min="1" value="{{ curso.creditos }}"><br>
+
+            <button class="btn btn-success" type="submit">Actualizar</button>
+            <a class="btn btn-outline-danger" href="{% url 'cursos' %}">Cancelar</a>
+        </form>
+    </div>
