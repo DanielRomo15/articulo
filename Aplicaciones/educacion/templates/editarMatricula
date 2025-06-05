@@ -1,3 +1,50 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Editar Matrícula</h1>
+        <form action="{% url 'procesarEdicionMatricula' %}" id="frm_editar_matricula" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id_matricula" value="{{ matricula.id_matricula }}">
+
+            <label for="id_estudiante">Estudiante</label><br>
+            <select required class="form-control" name="id_estudiante" id="id_estudiante">
+                <option value="">-- Seleccione un estudiante --</option>
+                {% for e in estudiantes %}
+                    <option value="{{ e.id_estudiante }}" {% if e.id_estudiante == matricula.id_estudiante.id_estudiante %}selected{% endif %}>
+                        {{ e.nombre }} {{ e.apellido }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <label for="id_curso">Curso</label><br>
+            <select required class="form-control" name="id_curso" id="id_curso">
+                <option value="">-- Seleccione un curso --</option>
+                {% for c in cursos %}
+                    <option value="{{ c.id_curso }}" {% if c.id_curso == matricula.id_curso.id_curso %}selected{% endif %}>
+                        {{ c.nombre_curso }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <label for="fecha_matricula">Fecha de Matrícula</label><br>
+            <input required class="form-control" type="date" name="fecha_matricula" id="fecha_matricula" value="{{ matricula.fecha_matricula }}"><br>
+
+            <label for="estado">Estado</label><br>
+            <select required class="form-control" name="estado" id="estado">
+                <option value="">-- Seleccione estado --</option>
+                {% for estado_opcion in estados %}
+                    <option value="{{ estado_opcion }}" {% if estado_opcion == matricula.estado %}selected{% endif %}>
+                        {{ estado_opcion|capfirst }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <button class="btn btn-success" type="submit">Actualizar</button>
+            <a class="btn btn-outline-danger" href="{% url 'matriculas' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
