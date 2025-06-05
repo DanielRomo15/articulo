@@ -1,3 +1,32 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Editar Docente</h1>
+        <form action="{% url 'procesarEdicionDocente' %}" id="frm_editar_docente" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id_docente" value="{{ docente.id_docente }}">
+
+            <label for="nombre">Nombre</label><br>
+            <input required class="form-control" type="text" name="nombre" id="nombre" value="{{ docente.nombre }}"><br>
+
+            <label for="apellido">Apellido</label><br>
+            <input required class="form-control" type="text" name="apellido" id="apellido" value="{{ docente.apellido }}"><br>
+
+            <label for="especialidad">Especialidad</label><br>
+            <input required class="form-control" type="text" name="especialidad" id="especialidad" value="{{ docente.especialidad }}"><br>
+
+            <label for="correo_electronico">Correo electrónico</label><br>
+            <input required class="form-control" type="email" name="correo_electronico" id="correo_electronico" value="{{ docente.correo_electronico }}"><br>
+
+            <label for="telefono">Teléfono</label><br>
+            <input required class="form-control" type="text" name="telefono" id="telefono" value="{{ docente.telefono }}"><br>
+
+            <button class="btn btn-success" type="submit">Actualizar</button>
+            <a class="btn btn-outline-danger" href="{% url 'docentes' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
