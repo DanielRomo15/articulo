@@ -48,3 +48,20 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+<script>
+    $("#frm_editar_matricula").validate({
+        rules: {
+            id_estudiante: { required: true },
+            id_curso: { required: true },
+            fecha_matricula: { required: true, date: true },
+            estado: { required: true }
+        },
+        messages: {
+            id_estudiante: { required: "Debe seleccionar un estudiante" },
+            id_curso: { required: "Debe seleccionar un curso" },
+            fecha_matricula: { required: "Este campo es obligatorio", date: "Ingrese una fecha válida" },
+            estado: { required: "Debe seleccionar un estado" }
+        }
+    });
+</script>
+{% endblock %}
