@@ -1,3 +1,32 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Nuevo Curso</h1>
+        <form action="{% url 'guardarCurso' %}" id="frm_nuevo_curso" method="post">
+            {% csrf_token %}
+            <label for="nombre_curso">Nombre del Curso(*)</label><br>
+            <input placeholder="Ingrese el nombre del curso" required class="form-control" type="text" name="nombre_curso" id="nombre_curso"><br>
+
+            <label for="descripcion">Descripción(*)</label><br>
+            <textarea placeholder="Ingrese una descripción" required class="form-control" name="descripcion" id="descripcion" rows="3"></textarea><br>
+
+            <label for="id_docente">Docente(*)</label><br>
+            <select required class="form-control" name="id_docente" id="id_docente">
+                <option value="">-- Seleccione un docente --</option>
+                {% for docente in docentes %}
+                <option value="{{ docente.id_docente }}">{{ docente.nombre }} {{ docente.apellido }} ({{ docente.especialidad }})</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="creditos">Créditos(*)</label><br>
+            <input placeholder="Ingrese la cantidad de créditos" required class="form-control" type="number" name="creditos" id="creditos" min="1"><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="{% url 'cursos' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
