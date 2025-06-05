@@ -1,3 +1,32 @@
 {% extends './plantilla.html' %}
 {% load static %}
 {% block body %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded">
+        <h1>Editar Estudiante</h1>
+        <form action="{% url 'procesarEdicionEstudiante' %}" id="frm_editar_estudiante" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id_estudiante" value="{{ estudiante.id_estudiante }}">
+
+            <label for="nombre">Nombre</label><br>
+            <input required class="form-control" type="text" name="nombre" id="nombre" value="{{ estudiante.nombre }}"><br>
+
+            <label for="apellido">Apellido</label><br>
+            <input required class="form-control" type="text" name="apellido" id="apellido" value="{{ estudiante.apellido }}"><br>
+
+            <label for="fecha_nacimiento">Fecha de nacimiento</label><br>
+            <input required class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ estudiante.fecha_nacimiento }}"><br>
+
+            <label for="correo_electronico">Correo electrónico</label><br>
+            <input required class="form-control" type="email" name="correo_electronico" id="correo_electronico" value="{{ estudiante.correo_electronico }}"><br>
+
+            <label for="telefono">Teléfono</label><br>
+            <input required class="form-control" type="text" name="telefono" id="telefono" value="{{ estudiante.telefono }}"><br>
+
+            <button class="btn btn-success" type="submit">Actualizar</button>
+            <a class="btn btn-outline-danger" href="{% url 'estudiantes' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
